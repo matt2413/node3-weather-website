@@ -13,7 +13,9 @@ const forecast = (lat, long, callback) => {
         undefined,
         `${body.daily.data[0].summary} It is currently ${body.currently.temperature} degrees out. There is a ${
           body.currently.precipProbability
-        }% chance of rain.`
+        }% chance of rain. Today will have a high of ${body.daily.data[0].temperatureMax} and a low of ${
+          body.daily.data[0].temperatureMin
+        }.`
       );
     }
   });
