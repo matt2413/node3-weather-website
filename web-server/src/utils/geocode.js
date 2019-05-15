@@ -18,8 +18,6 @@ const geocode = (address, callback) => {
       });
       const latitude = body.features[0].center[1];
       const longtitude = body.features[0].center[0];
-      console.log('latitude:' + latitude);
-      console.log('longtitude:' + longtitude);
     }
   });
 };
