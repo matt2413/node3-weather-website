@@ -1,11 +1,6 @@
-// create mongodb connection
-
-// const mongodb = require('mongodb');
-// const mongoClient = mongodb.MongoClient;
-// const objectID = mongodb.ObjectID;
-
 const { MongoClient, ObjectID } = require('mongodb');
 
+// create mongodb connection
 const connectionURL = 'mongodb://127.0.0.1:27017';
 const databaseName = 'task-manager';
 
@@ -22,44 +17,25 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
   const db = client.db(databaseName);
 
-  // insert a single document
-  // db.collection('users').insertOne(
-  //   {
-  //     name: 'Matt Lui',
-  //     age: 40
-  //   },
-  //   (error, result) => {
-  //     if (error) {
-  //       return console.log('Unable to insert user');
-  //     }
+  // query one record from mongodb
+  db.collection('tasks').findOne({ _id: new ObjectID('5cdcd3fc7af7054084e2629e') }, (err, res) => {
+    if (err) {
+      return console.log(err);
+    }
 
-  //     console.log(result.ops);
-  //   }
-  // );
+    console.log(res);
+  });
 
-  // insert multiple documents
-  // db.collection('users').insertMany([{ name: 'Jayden', age: 8 }, { name: 'Justin', age: 3 }], (err, res) => {
-  //   if (err) {
-  //     return console.log('Unable to insert user');
-  //   }
-  //   console.log('Number of documents inserted is ' + res.insertedCount);
-  // });
+  //query multiple records from mongodb
+  db.collection('tasks')
+    .find({ completed: true })
+    .toArray((err, res) => {
+      if (err) {
+        return console.log(err);
+      }
 
-  // insert multiple documents
-  // db.collection('tasks').insertMany(
-  //   [
-  //     { description: 'Make bed', completed: true },
-  //     { description: 'Brush teeth', completed: true },
-  //     { description: 'Have breakfast', completed: false }
-  //   ],
-  //   (err, res) => {
-  //     if (err) {
-  //       console.log('Unable to insert documents...');
-  //     }
-
-  //     console.log('Number of documents inserted is ' + res.insertedCount);
-  //   }
-  // );
+      console.log(res);
+    });
 
   client.close();
 });
