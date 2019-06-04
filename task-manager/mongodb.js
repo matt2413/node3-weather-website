@@ -17,25 +17,36 @@ MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) =>
 
   const db = client.db(databaseName);
 
-  // query one record from mongodb
-  db.collection('tasks').findOne({ _id: new ObjectID('5cdcd3fc7af7054084e2629e') }, (err, res) => {
-    if (err) {
-      return console.log(err);
-    }
-
-    console.log(res);
-  });
-
-  //query multiple records from mongodb
-  db.collection('tasks')
-    .find({ completed: true })
-    .toArray((err, res) => {
-      if (err) {
-        return console.log(err);
-      }
-
-      console.log(res);
+  db.collection('users')
+    .deleteMany({
+      age: 40
+    })
+    .then(result => {
+      console.log(result.deletedCount);
+    })
+    .catch(error => {
+      console.log(error);
     });
+
+  // // query one record from mongodb
+  // db.collection('tasks').findOne({ _id: new ObjectID('5cdcd3fc7af7054084e2629e') }, (err, res) => {
+  //   if (err) {
+  //     return console.log(err);
+  //   }
+
+  //   console.log(res);
+  // });
+
+  // //query multiple records from mongodb
+  // db.collection('tasks')
+  //   .find({ completed: true })
+  //   .toArray((err, res) => {
+  //     if (err) {
+  //       return console.log(err);
+  //     }
+
+  //     console.log(res);
+  //   });
 
   client.close();
 });
