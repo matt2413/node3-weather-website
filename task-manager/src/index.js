@@ -15,15 +15,24 @@ app.listen(port, () => {
 
 const bcrypt = require('bcryptjs');
 
-const testFunction = async () => {
-  const txtPassword = 'Red12345!';
-  const hashPassword = await bcrypt.hash(txtPassword, 8);
+// const testFunction = async () => {
+//   const txtPassword = 'Red12345!';
+//   const hashPassword = await bcrypt.hash(txtPassword, 8);
 
-  console.log('txtPassword: ' + txtPassword);
-  console.log('hashPassword: ' + hashPassword);
+//   console.log('txtPassword: ' + txtPassword);
+//   console.log('hashPassword: ' + hashPassword);
 
-  const isMatch = await bcrypt.compare('password123', hashPassword);
-  console.log('isMatch: ' + isMatch);
+//   const isMatch = await bcrypt.compare('password123', hashPassword);
+//   console.log('isMatch: ' + isMatch);
+// };
+
+// testFunction();
+
+const jwt = require('jsonwebtoken');
+
+const myFunction = async () => {
+  const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', { expiresIn: '1 days' });
+  console.log(token);
 };
 
-testFunction();
+myFunction();
