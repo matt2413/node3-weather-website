@@ -41,11 +41,11 @@ const bcrypt = require('bcryptjs');
 
 // testFunction();
 
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 
-const myFunction = async () => {
-  const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', { expiresIn: '1 days' });
-  console.log(token);
-};
+// const myFunction = async () => {
+//   const token = jwt.sign({ _id: 'abc123' }, 'thisismynewcourse', { expiresIn: '1 days' });
+//   console.log(token);
+// };
 
-myFunction();
+// myFunction();
